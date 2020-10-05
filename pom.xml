@@ -43,11 +43,47 @@
 	</dependencies>
 
 	<build>
+	<finalName>execute</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.1.1</version>
+            <configuration>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+		<plugin>
+    			<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-maven-plugin</artifactId>
+    		<configuration>
+        		<mainClass>com.giacom.databasedemo.DatabaseDemoApplication</mainClass>
+    		</configuration>
+   			 <executions>
+        		<execution>
+            	<goals>
+                <goal>repackage</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+
 		</plugins>
 	</build>
 
